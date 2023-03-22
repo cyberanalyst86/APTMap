@@ -19,14 +19,18 @@ Targets_list = []
 Tools_list = []
 Show_details_list = []
 
-#------------------------------Define Output File Path for Excel------------------------------#
-
-output_filepath = "C:\\Users\\Admin\\Downloads\\aptmap\\aviation.xlsx"
+#------------------------------Sector to Query------------------------------#
+#sector_to_query = "aviation"
+sector_to_query = "aerospace"
 
 #------------------------------Get Date of Query------------------------------#
 
 now = datetime.datetime.now()
-date_stamp = now.strftime("%d/%m/%Y")
+date_stamp = now.strftime("%d_%m_%Y")
+
+#------------------------------Define Output File Path for Excel------------------------------#
+
+output_filepath = "C:\\Users\\Admin\\Downloads\\aptmap\\"+ str(date_stamp)+ "_" + str(sector_to_query) + ".xlsx"
 
 #----------------------------APTMap Query URL------------------------------#
 
@@ -51,7 +55,7 @@ xpath = "//*[@id=\"search\"]/h3"
 driver.find_elements("xpath", xpath)[0].click()
 driver.implicitly_wait(0.2)
 #------------------------------Click on Search (by filter)------------------------------#
-driver.find_element("id", "searchTarget").send_keys("aviation")
+driver.find_element("id", "searchTarget").send_keys(sector_to_query)
 driver.implicitly_wait(0.2)
 driver.find_element("id", "btnsearch").click()
 
